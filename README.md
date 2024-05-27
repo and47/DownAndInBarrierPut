@@ -3,7 +3,6 @@
 Monte Carlo Simulation generates several thousand paths of daily price changes according to Wiener process (geometric Brownian motion) with constant drift and volatility. The last price of underlying under such path is thus going to be:
 
 <img src="media/image1.png" style="width:3.4375in;height:0.82292in" />
-
 <div style="text-align: right"> Source: C++ Design Patterns and Derivatives Pricing by M. S. Joshi </div>
 
 In the above formula S<sub>0</sub> stands for initial price of underlying asset, `r` is risk-free rate, `sigma` is volatility of underlying asset and the most right-hand side part represents Brownian motion distributed as Gaussian with mean zero and variance `T`. Also, we use continuous compounding for discounting the expected price of underlying to get its present value today:
@@ -16,7 +15,7 @@ In the above formula S<sub>0</sub> stands for initial price of underlying asset,
 The given option is a down-and-in barrier put, where the price has to decrease to reach the barrier and set the option “activated”. The payoff is then difference between strike price and the price of underlying asset at option’s maturity:
 
 <img src="media/image3.png" style="width:3.9375in;height:0.38542in" />,
-<div style="text-align: right"> where ***X*** stands for strike price </div>
+<div style="text-align: right"> where X stands for strike price </div>
 
 <img src="media/image4.png" style="width:6.5in;height:4.57986in" />
 <div style="text-align: right"> Source: Investopedia (own markup) </div>
@@ -49,19 +48,17 @@ if(Expiry) // If expiry = 0 is entered, the program runs monte carlo simulation 
 
 // if non-zero expiry is entered, the user is expected to provide the all other option’s characteristics & also number of price paths to be generated
 
-...
-
-BarrierOption myOption(workingDays, Strike, Spot, Volat, r, Expiry, Barrier);
-
-...}
+// ...
+	BarrierOption myOption(workingDays, Strike, Spot, Volat, r, Expiry, Barrier);
+}
 
 // If no characteristics were defined, run monte carlo with default characteristics of option
 
 else{
 	NumberOfPaths = 20000;
 	BarrierOption myOption(126, 200, 195, 0.2, 0.06, 0.5, 175);
-
-...}
+// ...
+}
 ```
 
 User is also asked to enter the number of paths to be generated during the simulation as the computing abilities are dependent on end-user machine. Generating more than a million of paths is not recommended as this amount of operations takes more than minute to be processed.
